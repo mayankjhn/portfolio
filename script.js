@@ -1,29 +1,25 @@
-// Wait for the DOM to fully load before running the script
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Portfolio Loaded!");
-
-    // Smooth scrolling for anchor links (if added later)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (event) {
-            event.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll("section");
+    
+    window.addEventListener("scroll", () => {
+        sections.forEach(section => {
+            let sectionTop = section.getBoundingClientRect().top;
+            let windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 100) {
+                section.style.opacity = "1";
+                section.style.transform = "translateY(0)";
             }
         });
     });
-
-    // Dynamic project list (can be modified easily)
-    const projects = [
-        { title: "Portfolio Website", description: "A personal website showcasing my skills and projects." },
-        { title: "To-Do List App", description: "A simple task manager built with JavaScript." }
-    ];
-
-    const projectContainer = document.querySelector(".projects");
-    projects.forEach(proj => {
-        const projectElement = document.createElement("div");
-        projectElement.classList.add("project");
-        projectElement.innerHTML = `<h3>${proj.title}</h3><p>${proj.description}</p>`;
-        projectContainer.appendChild(projectElement);
+    
+    // Smooth scrolling for internal links
+    document.querySelectorAll("a[href^='#']").forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth"
+            });
+        });
     });
 });
