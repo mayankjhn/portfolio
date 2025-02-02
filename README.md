@@ -6,7 +6,7 @@ This is my personal portfolio website built using HTML, CSS, and JavaScript. It'
 - User-friendly interface to highlight my technical skills and personal projects
 - Smooth navigation for better user experience
 
-## Technologies Used:
+# Technologies Used:
 - HTML
 - CSS
 - JavaScript
